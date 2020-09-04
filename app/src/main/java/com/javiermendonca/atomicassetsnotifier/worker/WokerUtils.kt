@@ -14,7 +14,7 @@ import com.javiermendonca.atomicassetsnotifier.R
  * @param message Message shown on the notification
  * @param context Context needed to create Toast
  */
-fun makeStatusNotification(title: String, message: String, context: Context) = with(context) {
+fun makeStatusNotification(title: String?, message: String?, context: Context) = with(context) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?)?.run {
             createNotificationChannel(NotificationChannel(
@@ -32,8 +32,13 @@ fun makeStatusNotification(title: String, message: String, context: Context) = w
         NotificationCompat.Builder(this, getString(R.string.notifications_channel_id))
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(title)
-            .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setVibrate(LongArray(0)).build()
+            .setVibrate(LongArray(0))
+            .setStyle(
+                NotificationCompat.BigTextStyle()
+                    .setSummaryText(getString(R.string.notifications_new_drop_message_summary))
+                    .bigText(message)
+            )
+            .build()
     )
 }

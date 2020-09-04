@@ -7,6 +7,12 @@
     <string name="notifications_channel_id">WAX AtomicAssets drops</string>
     <string name="notifications_channel">Atomic NFT Drops</string>
     <string name="notifications_new_drop_title">New Atomic drop on the way!</string>
+    <string name="notifications_new_drop_title_error">Error fetching Atomic drops</string>
     <string name="notifications_new_drop_message">There\'s a new drop of %s, with id %d coming on %s</string>
+    <string name="notifications_new_drop_message_summary">There\'s a new Atomic drop on the way!</string>
+
+
+    <!-- Errors -->
+    <string name="error_fetching_drops">Error fetching the drops</string>
 
 </resources>

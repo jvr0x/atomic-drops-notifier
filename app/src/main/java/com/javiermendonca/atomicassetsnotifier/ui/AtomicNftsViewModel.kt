@@ -1,14 +1,16 @@
-package com.javiermendonca.atomicassetsnotifier
+package com.javiermendonca.atomicassetsnotifier.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.work.*
+import com.javiermendonca.atomicassetsnotifier.data.repository.AtomicNftRepository
 import com.javiermendonca.atomicassetsnotifier.worker.NftCheckWorker
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 
-class AtomicNftsViewModel(application: Application) : AndroidViewModel(application) {
+class AtomicNftsViewModel(atomicNftRepository: AtomicNftRepository, application: Application) :
+    AndroidViewModel(application) {
     private val workManager = WorkManager.getInstance(application)
 
     internal fun fetchAtomicDrops() {
@@ -33,8 +35,7 @@ class AtomicNftsViewModel(application: Application) : AndroidViewModel(applicati
             .setConstraints(constraints)
             .build()
 
-        val testJob = PeriodicWorkRequestBuilder<NftCheckWorker>(3, TimeUnit.SECONDS)
-            .build()
+        val testJob = PeriodicWorkRequestBuilder<NftCheckWorker>(3, TimeUnit.SECONDS).build()
 
         workManager.enqueue(testJob)
     }
