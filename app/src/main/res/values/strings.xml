@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Atomic Assets Notifier</string>
+
+    <!-- Notifications -->
+    <string name="checking_atomic_drops">Checking Atomic drops</string>
+    <string name="notifications_description">"Shows notifications if there's a new atomic nft drop on the way"</string>
+    <string name="notifications_channel_id">WAX AtomicAssets drops</string>
+    <string name="notifications_channel">Atomic NFT Drops</string>
+    <string name="notifications_new_drop_title">New Atomic drop on the way!</string>
+    <string name="notifications_new_drop_message">There\'s a new drop of %s, with id %d coming on %s</string>
+
 </resources>
