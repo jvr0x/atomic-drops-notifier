@@ -1,4 +1,4 @@
-package com.javiermendonca.atomicassetsnotifier.worker
+package com.javiermendonca.atomicassetsnotifier.data.worker
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
