@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">@color/celadonBlue</color>
+    <color name="colorPrimaryDark">@color/prussianBlue</color>
+    <color name="colorAccent">@color/imperialRed</color>
+
+    <color name="imperialRed">#E63946</color>
+    <color name="honeydew">#F1FAEE</color>
+    <color name="powderBlue">#A8DADC</color>
+    <color name="celadonBlue">#457B9D</color>
+    <color name="prussianBlue">#1D3557</color>
+
 </resources>

@@ -2,6 +2,8 @@ package com.javiermendonca.atomicassetsnotifier.data.dtos
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.text.SimpleDateFormat
+import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class AtomicDrop(
@@ -18,4 +20,12 @@ data class AtomicDrop(
     @Json(name = "start_time") val startTime: Long,
     @Json(name = "end_time") val endTime: Long,
     @Json(name = "description") val description: String
-) : Dto
+) : Dto {
+
+    fun startTimeString() = SIMPLE_FORMAT_DATE.format(startTime * 1000)
+
+    companion object {
+        private val SIMPLE_FORMAT_DATE =
+            SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale("sv", "SE"))
+    }
+}

@@ -5,13 +5,20 @@ import androidx.work.Configuration
 import androidx.work.DelegatingWorkerFactory
 import com.javiermendonca.atomicassetsnotifier.data.api.RetrofitBuilder
 import com.javiermendonca.atomicassetsnotifier.data.repository.AtomicNftRepository
-import com.javiermendonca.atomicassetsnotifier.worker.NftCheckWorkerFactory
+import com.javiermendonca.atomicassetsnotifier.data.worker.NftWorkerFactory
 
 class AtomicAssetsNotifierApplication : Application(), Configuration.Provider {
 
     override fun getWorkManagerConfiguration(): Configuration {
         val workingFactory = DelegatingWorkerFactory().apply {
-            addFactory(NftCheckWorkerFactory(AtomicNftRepository(RetrofitBuilder.chainApi)))
+            addFactory(
+                NftWorkerFactory(
+                    AtomicNftRepository(
+                        RetrofitBuilder.chainApi,
+                        getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
+                    )
+                )
+            )
         }
 
         return Configuration.Builder()
@@ -24,8 +31,10 @@ class AtomicAssetsNotifierApplication : Application(), Configuration.Provider {
                 }
             }
             .build()
-
     }
 
+    companion object {
+        const val SHARED_PREFS = "AtomicPreferences"
+    }
 
 }

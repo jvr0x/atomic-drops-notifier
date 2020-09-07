@@ -1,15 +1,23 @@
 <resources>
     <string name="app_name">Atomic Assets Notifier</string>
 
+
+    <!-- Atomic Drop -->
+    <string name="drop_id">dropId: %d</string>
+    <string name="drop_price">price: %s</string>
+    <string name="drop_total">total: %d</string>
+    <string name="drop_start_time">Starting @ %s</string>
+
+
     <!-- Notifications -->
     <string name="checking_atomic_drops">Checking Atomic drops</string>
     <string name="notifications_description">"Shows notifications if there's a new atomic nft drop on the way"</string>
     <string name="notifications_channel_id">WAX AtomicAssets drops</string>
     <string name="notifications_channel">Atomic NFT Drops</string>
-    <string name="notifications_new_drop_title">New Atomic drop on the way!</string>
+    <string name="notifications_new_drop_title">New Atomic drops on the way!</string>
     <string name="notifications_new_drop_title_error">Error fetching Atomic drops</string>
-    <string name="notifications_new_drop_message">There\'s a new drop of %s, with id %d coming on %s</string>
-    <string name="notifications_new_drop_message_summary">There\'s a new Atomic drop on the way!</string>
+    <string name="notifications_new_drop_message">There are %d new drops upcoming!</string>
+    <string name="notifications_new_drop_message_summary">New Atomic drops on the way!</string>
 
 
     <!-- Errors -->
