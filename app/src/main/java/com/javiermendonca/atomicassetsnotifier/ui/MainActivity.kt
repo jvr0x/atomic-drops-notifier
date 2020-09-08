@@ -11,7 +11,7 @@ import com.javiermendonca.atomicassetsnotifier.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: AtomicNftsViewModel
+    private lateinit var viewModel: AtomicDropsViewModel
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(
             this,
-            AtomicNftsViewModelFactory(RetrofitBuilder.chainApi, application)
-        ).get(AtomicNftsViewModel::class.java)
+            AtomicDropsViewModelFactory(RetrofitBuilder.chainApi, application)
+        ).get(AtomicDropsViewModel::class.java)
         viewModel.fetchAtomicDrops()
 
         val adapter = AtomicDropsAdapter()

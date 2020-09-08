@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
-import com.javiermendonca.atomicassetsnotifier.data.repository.AtomicNftRepository
+import com.javiermendonca.atomicassetsnotifier.data.repository.AtomicDropRepository
 
-class NftWorkerFactory(private val atomicNftRepository: AtomicNftRepository) :
+class AtomicDropWorkerFactory(private val atomicDropRepository: AtomicDropRepository) :
     WorkerFactory() {
 
     override fun createWorker(
@@ -15,10 +15,10 @@ class NftWorkerFactory(private val atomicNftRepository: AtomicNftRepository) :
         workerParameters: WorkerParameters
     ): CoroutineWorker? {
         return when (workerClassName) {
-            NftDropCheckWorker::class.java.name -> NftDropCheckWorker(
+            AtomicDropWorker::class.java.name -> AtomicDropWorker(
                 appContext,
                 workerParameters,
-                atomicNftRepository
+                atomicDropRepository
             )
             else -> null
         }

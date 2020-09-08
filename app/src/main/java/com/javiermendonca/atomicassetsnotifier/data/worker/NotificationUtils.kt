@@ -11,8 +11,9 @@ import com.javiermendonca.atomicassetsnotifier.R
 /**
  * Create a Notification that is shown as a heads-up notification if possible.
  *
+ * @param title Title shown on the notification
  * @param message Message shown on the notification
- * @param context Context needed to create Toast
+ * @param context Context needed to create the notification channel and fetch resources
  */
 fun makeStatusNotification(title: String?, message: String?, context: Context) = with(context) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

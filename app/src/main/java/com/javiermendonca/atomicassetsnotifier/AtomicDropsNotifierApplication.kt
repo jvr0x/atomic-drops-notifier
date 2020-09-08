@@ -4,16 +4,16 @@ import android.app.Application
 import androidx.work.Configuration
 import androidx.work.DelegatingWorkerFactory
 import com.javiermendonca.atomicassetsnotifier.data.api.RetrofitBuilder
-import com.javiermendonca.atomicassetsnotifier.data.repository.AtomicNftRepository
-import com.javiermendonca.atomicassetsnotifier.data.worker.NftWorkerFactory
+import com.javiermendonca.atomicassetsnotifier.data.repository.AtomicDropRepository
+import com.javiermendonca.atomicassetsnotifier.data.worker.AtomicDropWorkerFactory
 
-class AtomicAssetsNotifierApplication : Application(), Configuration.Provider {
+class AtomicDropsNotifierApplication : Application(), Configuration.Provider {
 
     override fun getWorkManagerConfiguration(): Configuration {
         val workingFactory = DelegatingWorkerFactory().apply {
             addFactory(
-                NftWorkerFactory(
-                    AtomicNftRepository(
+                AtomicDropWorkerFactory(
+                    AtomicDropRepository(
                         RetrofitBuilder.chainApi,
                         getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
                     )
