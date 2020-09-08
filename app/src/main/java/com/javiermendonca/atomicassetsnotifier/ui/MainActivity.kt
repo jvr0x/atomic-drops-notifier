@@ -25,9 +25,9 @@ class MainActivity : AppCompatActivity() {
         ).get(AtomicNftsViewModel::class.java)
         viewModel.fetchAtomicDrops()
 
+        val adapter = AtomicDropsAdapter()
         binding.atomicDrops.layoutManager = GridLayoutManager(this, 2)
-        binding.atomicDrops.adapter = Adapter()
-
-        viewModel.atomicDrops.observe()
+        binding.atomicDrops.adapter = adapter
+        viewModel.atomicDrops.observe(this, { atomicDrops -> adapter.setAtomicDrops(atomicDrops) })
     }
 }

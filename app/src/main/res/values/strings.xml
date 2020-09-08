@@ -1,12 +1,10 @@
 <resources>
-    <string name="app_name">Atomic Assets Notifier</string>
-
-
     <!-- Atomic Drop -->
     <string name="drop_id">dropId: %d</string>
     <string name="drop_price">price: %s</string>
     <string name="drop_total">total: %d</string>
     <string name="drop_start_time">Starting @ %s</string>
+    <string name="drop_end_time">Ending @ %s</string>
 
 
     <!-- Notifications -->

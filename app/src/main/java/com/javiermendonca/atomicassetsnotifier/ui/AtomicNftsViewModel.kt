@@ -26,7 +26,7 @@ class AtomicNftsViewModel(val atomicNftRepository: AtomicNftRepository, applicat
 
     fun fetchAtomicDrops() {
         viewModelScope.launch(Dispatchers.IO) {
-            atomicDrops.value = atomicNftRepository.getAtomicDrops(TableRow(limit = 10)).rows
+            atomicDrops.postValue(atomicNftRepository.getAtomicDrops(TableRow(limit = 10)).rows)
         }
     }
 

@@ -19,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:itemCount="10"
-            tools:listitem="@layout/nft_item" />
+            tools:listitem="@layout/atomic_drop_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

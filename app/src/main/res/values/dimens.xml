@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Common -->
+
+    <dimen name="space_medium">8dp</dimen>
+    <dimen name="space_normal">16dp</dimen>
+
+</resources>

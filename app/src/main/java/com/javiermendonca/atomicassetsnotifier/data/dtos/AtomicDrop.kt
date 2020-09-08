@@ -20,12 +20,17 @@ data class AtomicDrop(
     @Json(name = "start_time") val startTime: Long,
     @Json(name = "end_time") val endTime: Long,
     @Json(name = "description") val description: String
-) : Dto {
+) : Dto
 
-    fun startTimeString() = SIMPLE_FORMAT_DATE.format(startTime * 1000)
+private val SIMPLE_FORMAT_DATE =
+    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale("sv", "SE"))
 
-    companion object {
-        private val SIMPLE_FORMAT_DATE =
-            SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale("sv", "SE"))
-    }
+fun AtomicDrop.startTimeString(): String = SIMPLE_FORMAT_DATE.format(startTime * 1000L)
+fun AtomicDrop.endTimeString(): String = SIMPLE_FORMAT_DATE.format(endTime * 1000L)
+
+fun AtomicDrop.formattedPrice(): String {
+    val value = listingPrice.split("\\s".toRegex())[0]
+    val currency = listingPrice.split("\\s".toRegex())[1]
+
+    return "${"%.2f".format(value.toDouble())} $currency"
 }
