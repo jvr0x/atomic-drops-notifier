@@ -10,4 +10,8 @@
     <color name="celadonBlue">#457B9D</color>
     <color name="prussianBlue">#1D3557</color>
 
+    <color name="atomicBlue">#1a203c</color>
+    <color name="atomicOrange">#ea923e</color>
+
+
 </resources>

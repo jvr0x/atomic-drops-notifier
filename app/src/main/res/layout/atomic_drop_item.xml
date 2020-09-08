@@ -7,11 +7,11 @@
 
         <import
             alias="AtomicExtensions"
-            type="com.javiermendonca.atomicassetsnotifier.data.dtos.AtomicDropKt" />
+            type="com.javiermendonca.atomicdropsnotifier.data.dtos.AtomicDropKt" />
 
         <variable
             name="atomicDrop"
-            type="com.javiermendonca.atomicassetsnotifier.data.dtos.AtomicDrop" />
+            type="com.javiermendonca.atomicdropsnotifier.data.dtos.AtomicDrop" />
     </data>
 
     <LinearLayout
