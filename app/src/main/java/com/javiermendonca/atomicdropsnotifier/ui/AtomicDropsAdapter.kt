@@ -1,11 +1,14 @@
 package com.javiermendonca.atomicdropsnotifier.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.javiermendonca.atomicdropsnotifier.R
 import com.javiermendonca.atomicdropsnotifier.core.extensions.bind
 import com.javiermendonca.atomicdropsnotifier.data.dtos.AtomicDrop
 import com.javiermendonca.atomicdropsnotifier.databinding.AtomicDropItemBinding
+
 
 class AtomicDropsAdapter : RecyclerView.Adapter<AtomicDropsAdapter.AtomicDropViewHolder>() {
 
@@ -26,8 +29,20 @@ class AtomicDropsAdapter : RecyclerView.Adapter<AtomicDropsAdapter.AtomicDropVie
 
     class AtomicDropViewHolder(private val binding: AtomicDropItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(atomicDrop: AtomicDrop) {
+        fun bind(atomicDrop: AtomicDrop) = with(itemView.context) {
             binding.atomicDrop = atomicDrop
+            binding.atomicCard.setOnClickListener {
+                val browserIntent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(
+                        getString(
+                            R.string.atomichub_drop_link,
+                            atomicDrop.dropId
+                        )
+                    )
+                )
+                startActivity(browserIntent)
+            }
         }
     }
 }
