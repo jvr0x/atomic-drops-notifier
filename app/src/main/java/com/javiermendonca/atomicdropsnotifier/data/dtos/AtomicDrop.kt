@@ -2,10 +2,9 @@ package com.javiermendonca.atomicdropsnotifier.data.dtos
 
 import android.content.Context
 import com.javiermendonca.atomicdropsnotifier.R
+import com.javiermendonca.atomicdropsnotifier.data.worker.SIMPLE_FORMAT_DATE
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.text.SimpleDateFormat
-import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class AtomicDrop(
@@ -23,9 +22,6 @@ data class AtomicDrop(
     @Json(name = "end_time") val endTime: Long,
     @Json(name = "description") val description: String
 ) : Dto
-
-private val SIMPLE_FORMAT_DATE =
-    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale("sv", "SE"))
 
 fun AtomicDrop.startTimeString(): String = SIMPLE_FORMAT_DATE.format(startTime * 1000L)
 fun AtomicDrop.endTimeString(): String = SIMPLE_FORMAT_DATE.format(endTime * 1000L)

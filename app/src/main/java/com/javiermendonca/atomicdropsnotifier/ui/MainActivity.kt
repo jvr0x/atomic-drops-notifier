@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.fetchAtomicDrops()
 
         val adapter = AtomicDropsAdapter()
-        binding.atomicDrops.layoutManager = GridLayoutManager(this, 2)
+        binding.atomicDrops.layoutManager = GridLayoutManager(this, 1)
         binding.atomicDrops.adapter = adapter
         viewModel.atomicDrops.observe(this, { atomicDrops -> adapter.setAtomicDrops(atomicDrops) })
     }

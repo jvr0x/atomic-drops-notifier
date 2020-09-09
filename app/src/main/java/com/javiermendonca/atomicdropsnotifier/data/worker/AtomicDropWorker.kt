@@ -8,6 +8,7 @@ import com.javiermendonca.atomicdropsnotifier.R
 import com.javiermendonca.atomicdropsnotifier.data.dtos.TableRow
 import com.javiermendonca.atomicdropsnotifier.data.repository.AtomicDropRepository
 import kotlinx.coroutines.coroutineScope
+import java.util.*
 
 class AtomicDropWorker(
     context: Context,
@@ -18,6 +19,13 @@ class AtomicDropWorker(
     override suspend fun doWork(): Result = coroutineScope {
         with(applicationContext) context@{
             try {
+                makeStatusNotification(
+                    getString(R.string.notifications_health_title),
+                    SIMPLE_FORMAT_DATE.format(Calendar.getInstance().timeInMillis),
+                    this@context,
+                    notificationChannelId = R.string.notifications_health_channel_id
+                )
+
                 val lastSeenDropId = atomicDropRepository.lastPersistedDrop()
                 val lastUnSeenDrop =
                     atomicDropRepository.getAtomicDrops(TableRow(limit = 1)).rows.first()

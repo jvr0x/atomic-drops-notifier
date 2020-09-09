@@ -6,21 +6,23 @@
     <string name="drop_price">price: %s</string>
     <string name="drop_price_format">%1$.2f %2$s</string>
     <string name="drop_total">total: %d</string>
-    <string name="drop_start_time">Starting @ %s</string>
-    <string name="drop_end_time">Ending @ %s</string>
     <string name="drop_free">Free</string>
 
 
     <!-- Notifications -->
     <string name="checking_atomic_drops">Checking Atomic drops</string>
-    <string name="notifications_description">"Shows notifications if there's a new atomic nft drop on the way"</string>
-    <string name="notifications_channel_id">WAX AtomicAssets drops</string>
-    <string name="notifications_channel">Atomic NFT Drops</string>
+    <string name="notifications_drops_description">Shows notifications if there are new atomic nft drops on the way</string>
+    <string name="notifications_drops_channel_id">atomicdrops</string>
+    <string name="notifications_drops_channel">Atomic NFT Drops</string>
     <string name="notifications_new_drop_title">New Atomic drops on the way!</string>
     <string name="notifications_new_drop_title_error">Error fetching Atomic drops</string>
     <string name="notifications_new_drop_message">There are %d new drops upcoming!</string>
     <string name="notifications_new_drop_message_summary">New Atomic drops on the way!</string>
 
+    <string name="notifications_health_title">Looking for new drops…</string>
+    <string name="notifications_health_channel_id">atomicdrops_health</string>
+    <string name="notifications_health_channel">Atomic NFT Drops Heartbeat</string>
+    <string name="notifications_health_description">Makes sure fetching drops in the background is still active</string>
 
     <!-- Errors -->
     <string name="error_fetching_drops">Error fetching the drops</string>

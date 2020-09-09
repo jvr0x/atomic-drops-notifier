@@ -6,4 +6,7 @@
     <dimen name="space_medium">8dp</dimen>
     <dimen name="space_normal">16dp</dimen>
 
+    <!-- Atomic Drops -->
+    <dimen name="collection_image_size">80dp</dimen>
+
 </resources>

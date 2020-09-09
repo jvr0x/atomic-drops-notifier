@@ -33,16 +33,26 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/space_normal">
 
+                <ImageView
+                    android:id="@+id/collection_image"
+                    android:layout_width="@dimen/collection_image_size"
+                    android:layout_height="@dimen/collection_image_size"
+                    app:layout_constraintBottom_toTopOf="@+id/title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:background="@tools:sample/backgrounds/scenic" />
+
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_normal"
                     android:text="@{atomicDrop.collectionName}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/collection_image"
                     tools:text="Collection name" />
 
                 <TextView
@@ -80,24 +90,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_normal"
-                    android:text="@{String.format(@string/drop_start_time, AtomicExtensions.startTimeString(atomicDrop))}"
+                    android:gravity="center"
+                    android:text="@{AtomicExtensions.startTimeString(atomicDrop)}"
+                    app:drawableStartCompat="@drawable/ic_timer_sand_start"
+                    app:drawableTint="@color/prussianBlue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/price"
                     app:visible="@{atomicDrop.startTime != 0}"
-                    tools:text="Starting @ 2020-10-10'T'20:00:00 + 02:00" />
+                    tools:text="2020-10-10'T'20:00:00" />
 
                 <TextView
                     android:id="@+id/endtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_normal"
-                    android:text="@{String.format(@string/drop_end_time, AtomicExtensions.endTimeString(atomicDrop))}"
+                    android:gravity="center"
+                    android:text="@{AtomicExtensions.endTimeString(atomicDrop)}"
+                    app:drawableStartCompat="@drawable/ic_timer_sand_end"
+                    app:drawableTint="@color/imperialRed"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/starttime"
                     app:visible="@{atomicDrop.endTime != 0}"
-                    tools:text="Ending @ 2020-10-10'T'20:00:00 + 02:00" />
+                    tools:text="2020-10-10'T'20:00:00" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
