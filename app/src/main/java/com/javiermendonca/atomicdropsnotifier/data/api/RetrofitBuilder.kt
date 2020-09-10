@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
 
-    private fun getRetrofit(): Retrofit {
+    private fun getRetrofit(baseUrl: String): Retrofit {
         val httpClient = OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
@@ -23,10 +23,12 @@ object RetrofitBuilder {
 
         return Retrofit.Builder()
             .client(httpClient)
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().build()))
             .build()
     }
 
-    val chainApi: ChainApi = getRetrofit().create(ChainApi::class.java)
+    val chainApi: ChainApi = getRetrofit(BuildConfig.WAX_BASE_URL).create(ChainApi::class.java)
+    val atomicAssetsApi: AtomicAssetsApi =
+        getRetrofit(BuildConfig.ATOMIC_BASE_URL).create(AtomicAssetsApi::class.java)
 }

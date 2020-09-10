@@ -1,8 +1,5 @@
 package com.javiermendonca.atomicdropsnotifier.data.dtos
 
-import android.content.Context
-import com.javiermendonca.atomicdropsnotifier.R
-import com.javiermendonca.atomicdropsnotifier.data.worker.SIMPLE_FORMAT_DATE
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -22,17 +19,3 @@ data class AtomicDrop(
     @Json(name = "end_time") val endTime: Long,
     @Json(name = "description") val description: String
 ) : Dto
-
-fun AtomicDrop.startTimeString(): String = SIMPLE_FORMAT_DATE.format(startTime * 1000L)
-fun AtomicDrop.endTimeString(): String = SIMPLE_FORMAT_DATE.format(endTime * 1000L)
-
-fun AtomicDrop.formattedPrice(context: Context): String = with(context) {
-    val value = listingPrice.split("\\s".toRegex())[0].toDouble()
-    val currency = listingPrice.split("\\s".toRegex())[1]
-
-    return if (value == 0.0) {
-        getString(R.string.drop_free)
-    } else {
-        getString(R.string.drop_price_format, value, currency)
-    }
-}

@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.javiermendonca.atomicdropsnotifier.R
 import com.javiermendonca.atomicdropsnotifier.core.extensions.bind
-import com.javiermendonca.atomicdropsnotifier.data.dtos.AtomicDrop
+import com.javiermendonca.atomicdropsnotifier.data.repository.models.AtomicDropItem
 import com.javiermendonca.atomicdropsnotifier.databinding.AtomicDropItemBinding
 
 
 class AtomicDropsAdapter : RecyclerView.Adapter<AtomicDropsAdapter.AtomicDropViewHolder>() {
 
-    private var data: List<AtomicDrop> = emptyList()
+    private var data: List<AtomicDropItem> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         AtomicDropViewHolder(parent.bind(R.layout.atomic_drop_item))
@@ -22,22 +22,22 @@ class AtomicDropsAdapter : RecyclerView.Adapter<AtomicDropsAdapter.AtomicDropVie
     override fun onBindViewHolder(holder: AtomicDropViewHolder, position: Int) =
         holder.bind(data[position])
 
-    fun setAtomicDrops(rows: List<AtomicDrop>) {
+    fun setAtomicDrops(rows: List<AtomicDropItem>) {
         data = rows
         notifyDataSetChanged()
     }
 
     class AtomicDropViewHolder(private val binding: AtomicDropItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(atomicDrop: AtomicDrop) = with(itemView.context) {
-            binding.atomicDrop = atomicDrop
+        fun bind(atomicDropItem: AtomicDropItem) = with(itemView.context) {
+            binding.atomicDropItem = atomicDropItem
             binding.atomicCard.setOnClickListener {
                 val browserIntent = Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse(
                         getString(
                             R.string.atomichub_drop_link,
-                            atomicDrop.dropId
+                            atomicDropItem.dropId
                         )
                     )
                 )

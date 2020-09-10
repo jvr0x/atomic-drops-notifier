@@ -7,11 +7,11 @@
 
         <import
             alias="AtomicExtensions"
-            type="com.javiermendonca.atomicdropsnotifier.data.dtos.AtomicDropKt" />
+            type="com.javiermendonca.atomicdropsnotifier.data.repository.models.AtomicDropItemKt" />
 
         <variable
-            name="atomicDrop"
-            type="com.javiermendonca.atomicdropsnotifier.data.dtos.AtomicDrop" />
+            name="atomicDropItem"
+            type="com.javiermendonca.atomicdropsnotifier.data.repository.models.AtomicDropItem" />
     </data>
 
     <LinearLayout
@@ -37,6 +37,7 @@
                     android:id="@+id/collection_image"
                     android:layout_width="@dimen/collection_image_size"
                     android:layout_height="@dimen/collection_image_size"
+                    app:collectionImage="@{atomicDropItem.collection.image}"
                     app:layout_constraintBottom_toTopOf="@+id/title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_normal"
-                    android:text="@{atomicDrop.collectionName}"
+                    android:text="@{atomicDropItem.collection.name}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +60,7 @@
                     android:id="@+id/drop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.format(@string/drop_id, atomicDrop.dropId)}"
+                    android:text="@{String.format(@string/drop_id, atomicDropItem.dropId)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/title"
@@ -69,7 +70,7 @@
                     android:id="@+id/total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.format(@string/drop_total, atomicDrop.maxClaimable)}"
+                    android:text="@{String.format(@string/drop_total, atomicDropItem.maxClaimable)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/drop"
@@ -79,7 +80,7 @@
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.format(@string/drop_price, AtomicExtensions.formattedPrice(atomicDrop, context))}"
+                    android:text="@{String.format(@string/drop_price, AtomicExtensions.formattedPrice(atomicDropItem, context))}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/total"
@@ -91,13 +92,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_normal"
                     android:gravity="center"
-                    android:text="@{AtomicExtensions.startTimeString(atomicDrop)}"
+                    android:text="@{AtomicExtensions.startTimeString(atomicDropItem)}"
                     app:drawableStartCompat="@drawable/ic_timer_sand_start"
                     app:drawableTint="@color/prussianBlue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/price"
-                    app:visible="@{atomicDrop.startTime != 0}"
+                    app:visible="@{atomicDropItem.startTime != 0}"
                     tools:text="2020-10-10'T'20:00:00" />
 
                 <TextView
@@ -106,13 +107,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_normal"
                     android:gravity="center"
-                    android:text="@{AtomicExtensions.endTimeString(atomicDrop)}"
+                    android:text="@{AtomicExtensions.endTimeString(atomicDropItem)}"
                     app:drawableStartCompat="@drawable/ic_timer_sand_end"
                     app:drawableTint="@color/imperialRed"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/starttime"
-                    app:visible="@{atomicDrop.endTime != 0}"
+                    app:visible="@{atomicDropItem.endTime != 0}"
                     tools:text="2020-10-10'T'20:00:00" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

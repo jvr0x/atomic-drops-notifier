@@ -8,11 +8,12 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.javiermendonca.atomicdropsnotifier.data.dtos.AtomicDrop
 import com.javiermendonca.atomicdropsnotifier.data.dtos.TableRow
 import com.javiermendonca.atomicdropsnotifier.data.repository.AtomicDropRepository
+import com.javiermendonca.atomicdropsnotifier.data.repository.models.AtomicDropItem
 import com.javiermendonca.atomicdropsnotifier.data.worker.AtomicDropWorker
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
@@ -22,7 +23,7 @@ class AtomicDropsViewModel(
 ) :
     AndroidViewModel(application) {
     private val workManager = WorkManager.getInstance(application)
-    val atomicDrops = MutableLiveData<List<AtomicDrop>>()
+    val atomicDrops = MutableLiveData<List<AtomicDropItem>>()
 
     init {
         queueBackgroundJob()
@@ -30,7 +31,37 @@ class AtomicDropsViewModel(
 
     fun fetchAtomicDrops() {
         viewModelScope.launch(Dispatchers.IO) {
-            atomicDrops.postValue(atomicDropRepository.getAtomicDrops(TableRow(limit = DROPS_LIMIT)).rows)
+            val drops =
+                atomicDropRepository.getAtomicDrops(TableRow(limit = DROPS_LIMIT)).rows
+
+            val collectionNames = drops.distinctBy { it.collectionName }.map { it.collectionName }
+
+            val collections = collectionNames
+                .map { async { atomicDropRepository.fetchCollectionImage(it) } }
+                .map { it.await() }
+                .map { it.collection }
+                .toList()
+
+            val atomicDropItems = drops.asSequence().map {
+                val collectionName = it.collectionName
+                AtomicDropItem(
+                    dropId = it.dropId,
+                    collection = collections.find { it.collectionName == collectionName },
+                    templatesToMint = it.templatesToMint,
+                    listingPrice = it.listingPrice,
+                    priceRecipient = it.priceRecipient,
+                    authRequired = it.authRequired,
+                    accountLimit = it.accountLimit,
+                    accountLimitCooldown = it.accountLimitCooldown,
+                    maxClaimable = it.maxClaimable,
+                    currentClaimable = it.currentClaimable,
+                    startTime = it.startTime,
+                    endTime = it.endTime,
+                    description = it.description
+                )
+            }.toList()
+
+            atomicDrops.postValue(atomicDropItems)
         }
     }
 

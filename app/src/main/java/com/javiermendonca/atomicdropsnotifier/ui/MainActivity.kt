@@ -21,7 +21,11 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(
             this,
-            AtomicDropsViewModelFactory(RetrofitBuilder.chainApi, application)
+            AtomicDropsViewModelFactory(
+                RetrofitBuilder.chainApi,
+                RetrofitBuilder.atomicAssetsApi,
+                application
+            )
         ).get(AtomicDropsViewModel::class.java)
         viewModel.fetchAtomicDrops()
 

@@ -15,6 +15,7 @@ class AtomicDropsNotifierApplication : Application(), Configuration.Provider {
                 AtomicDropWorkerFactory(
                     AtomicDropRepository(
                         RetrofitBuilder.chainApi,
+                        RetrofitBuilder.atomicAssetsApi,
                         getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
                     )
                 )
