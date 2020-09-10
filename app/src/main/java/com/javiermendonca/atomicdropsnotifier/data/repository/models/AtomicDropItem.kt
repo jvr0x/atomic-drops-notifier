@@ -2,12 +2,12 @@ package com.javiermendonca.atomicdropsnotifier.data.repository.models
 
 import android.content.Context
 import com.javiermendonca.atomicdropsnotifier.R
-import com.javiermendonca.atomicdropsnotifier.data.dtos.Collection
+import com.javiermendonca.atomicdropsnotifier.data.dtos.Template
 import com.javiermendonca.atomicdropsnotifier.data.worker.SIMPLE_FORMAT_DATE
 
 data class AtomicDropItem(
     val dropId: Int,
-    val collection: Collection?,
+    val template: Template?,
     val templatesToMint: List<Int>,
     val listingPrice: String,
     val priceRecipient: String,

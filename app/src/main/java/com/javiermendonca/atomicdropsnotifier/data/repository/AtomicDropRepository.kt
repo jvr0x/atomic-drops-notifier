@@ -12,8 +12,8 @@ class AtomicDropRepository(
 ) {
     suspend fun getAtomicDrops(tableRow: TableRow) = chainApi.getAtomicDrops(tableRow)
 
-    suspend fun fetchCollectionImage(collectionName: String) =
-        atomicAssetsApi.getCollection(collectionName)
+    suspend fun fetchTemplate(collectionName: String, templateId: Int) =
+        atomicAssetsApi.getTemplate(collectionName, templateId)
 
     fun persistAtomicDrop(dropId: Int) = sharedPreferences
         .edit()

@@ -34,19 +34,20 @@ class AtomicDropsViewModel(
             val drops =
                 atomicDropRepository.getAtomicDrops(TableRow(limit = DROPS_LIMIT)).rows
 
-            val collectionNames = drops.distinctBy { it.collectionName }.map { it.collectionName }
+            val collectionNames = drops.distinctBy { it.collectionName }
+                .map { it.collectionName to it.templatesToMint.first() }
 
-            val collections = collectionNames
-                .map { async { atomicDropRepository.fetchCollectionImage(it) } }
+            val templates = collectionNames
+                .map { async { atomicDropRepository.fetchTemplate(it.first, it.second) } }
                 .map { it.await() }
-                .map { it.collection }
+                .map { it.template }
                 .toList()
 
             val atomicDropItems = drops.asSequence().map {
-                val collectionName = it.collectionName
+                val templateId = it.templatesToMint.first()
                 AtomicDropItem(
                     dropId = it.dropId,
-                    collection = collections.find { it.collectionName == collectionName },
+                    template = templates.find { it.id.toInt() == templateId },
                     templatesToMint = it.templatesToMint,
                     listingPrice = it.listingPrice,
                     priceRecipient = it.priceRecipient,
@@ -83,7 +84,7 @@ class AtomicDropsViewModel(
         const val WORKER_TAG = "AtomicDrops"
         const val WORKER_FREQUENCY = 5L
 
-        const val DROPS_LIMIT = 10
+        const val DROPS_LIMIT = 20
     }
 }
 

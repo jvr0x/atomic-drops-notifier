@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Collection(
-    val contract: String,
+    val contract: String?,
     @Json(name = "collection_name") val collectionName: String,
     val name: String,
     val author: String,
