@@ -33,3 +33,7 @@ fun AtomicDropItem.formattedPrice(context: Context): String = with(context) {
         getString(R.string.drop_price_format, value, currency)
     }
 }
+
+fun AtomicDropItem.outOfStock(): Boolean = currentClaimable - maxClaimable == 0
+
+fun AtomicDropItem.ended(): Boolean = System.currentTimeMillis() > endTime

@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.javiermendonca.atomicdropsnotifier.R
 import com.javiermendonca.atomicdropsnotifier.core.extensions.bind
 import com.javiermendonca.atomicdropsnotifier.data.repository.models.AtomicDropItem
+import com.javiermendonca.atomicdropsnotifier.data.repository.models.ended
+import com.javiermendonca.atomicdropsnotifier.data.repository.models.outOfStock
 import com.javiermendonca.atomicdropsnotifier.databinding.AtomicDropItemBinding
 
 
@@ -31,6 +33,12 @@ class AtomicDropsAdapter : RecyclerView.Adapter<AtomicDropsAdapter.AtomicDropVie
         RecyclerView.ViewHolder(binding.root) {
         fun bind(atomicDropItem: AtomicDropItem) = with(itemView.context) {
             binding.atomicDropItem = atomicDropItem
+            binding.endedLabel.text = when {
+                atomicDropItem.ended() -> getString(R.string.ended)
+                atomicDropItem.outOfStock() -> getString(R.string.out_of_stock)
+                else -> null
+            }
+
             binding.atomicDropContainer.setOnClickListener {
                 val browserIntent = Intent(
                     Intent.ACTION_VIEW,

@@ -58,10 +58,23 @@
             android:gravity="center"
             android:paddingHorizontal="@dimen/space_medium"
             android:text="@{Integer.toString(atomicDropItem.dropId)}"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintStart_toStartOf="@+id/template_image"
             app:layout_constraintTop_toTopOf="@+id/template_image"
             tools:text="105" />
+
+        <TextView
+            android:id="@+id/ended_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_medium"
+            android:background="@drawable/drop_ended_background"
+            android:paddingHorizontal="@dimen/space_medium"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintEnd_toEndOf="@+id/template_image"
+            app:layout_constraintTop_toTopOf="@+id/template_image"
+            app:visible="@{AtomicExtensions.outOfStock(atomicDropItem) || AtomicExtensions.ended(atomicDropItem)}"
+            tools:text="Ended!" />
 
         <TextView
             android:id="@+id/total"

@@ -8,6 +8,8 @@
     <string name="drop_price_format">%1$.2f %2$s</string>
     <string name="drop_available">%d/%d</string>
     <string name="drop_free">Free to claim</string>
+    <string name="ended">Ended!</string>
+    <string name="out_of_stock">Out of stock</string>
 
 
     <!-- Notifications -->
