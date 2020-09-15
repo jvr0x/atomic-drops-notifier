@@ -1,7 +1,14 @@
 <resources>
 
     <string name="about">About</string>
-    <string name="about_message">%s is an Android app that lists the newest Atomic drops and notifies you of new upcoming ones.\n\nNever miss a drop again!</string>
+    <string name="about_message">Never miss a drop again!\n\n%s is an Android app that lists the newest Atomic drops and notifies you of new upcoming ones.</string>
+    <string name="about_donation">If you find this app useful, consider donating at %s</string>
+    <string name="about_developed_by">Developed by Javier Mendonça.</string>
+    <string name="about_twitter">"@javiermendonca"</string>
+    <string name="about_github">See project on github</string>
+    <string name="about_version">Version: %s</string>
+    <string name="about_twitter_link">"https://twitter.com/javiermendonca"</string>
+    <string name="about_github_link">"https://github.com/javierjmc/atomic-drops-notifier"</string>
 
     <!-- urls -->
     <string name="atomichub_drop_link">https://wax.atomichub.io/drops/%d</string>
