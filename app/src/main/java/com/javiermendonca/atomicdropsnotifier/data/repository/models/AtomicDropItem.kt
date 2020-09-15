@@ -10,7 +10,6 @@ data class AtomicDropItem(
     val template: Template?,
     val templatesToMint: List<Int>,
     val listingPrice: String,
-    val priceRecipient: String,
     val authRequired: Int,
     val accountLimit: Int,
     val accountLimitCooldown: Int,

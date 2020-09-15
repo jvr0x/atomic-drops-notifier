@@ -35,7 +35,7 @@ class AtomicDropsViewModel(
                 atomicDropRepository.getAtomicDrops(TableRow(limit = DROPS_LIMIT)).rows
 
             val collectionNames = drops.distinctBy { it.collectionName }
-                .map { it.collectionName to it.templatesToMint.first() }
+                .map { it.collectionName to it.assetsToMint.first().templateId }
 
             val templates = collectionNames
                 .map { async { atomicDropRepository.fetchTemplate(it.first, it.second) } }
@@ -44,13 +44,12 @@ class AtomicDropsViewModel(
                 .toList()
 
             val atomicDropItems = drops.asSequence().map {
-                val templateId = it.templatesToMint.first()
+                val templateId = it.assetsToMint.first().templateId
                 AtomicDropItem(
                     dropId = it.dropId,
                     template = templates.find { it.id.toInt() == templateId },
-                    templatesToMint = it.templatesToMint,
+                    templatesToMint = it.assetsToMint.map { it.templateId },
                     listingPrice = it.listingPrice,
-                    priceRecipient = it.priceRecipient,
                     authRequired = it.authRequired,
                     accountLimit = it.accountLimit,
                     accountLimitCooldown = it.accountLimitCooldown,
@@ -58,7 +57,7 @@ class AtomicDropsViewModel(
                     currentClaimable = it.currentClaimable,
                     startTime = it.startTime,
                     endTime = it.endTime,
-                    description = it.description
+                    description = it.displayData
                 )
             }.toList()
 
