@@ -1,15 +1,20 @@
 package com.javiermendonca.atomicdropsnotifier.data.worker
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.javiermendonca.atomicdropsnotifier.R
+import com.javiermendonca.atomicdropsnotifier.ui.MainActivity
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 /**
  * Create a Notification that is shown as a heads-up notification if possible.
@@ -50,20 +55,27 @@ fun makeStatusNotification(
         R.integer.notification_health_id
     }
 
-    NotificationManagerCompat.from(this).notify(
-        resources.getInteger(notificationId),
-        NotificationCompat.Builder(this, getString(notificationChannelId))
-            .setSmallIcon(R.drawable.ic_atomic_bell)
-            .setContentTitle(title)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setVibrate(LongArray(0))
-            .setStyle(
-                NotificationCompat.BigTextStyle()
-                    .setSummaryText(getString(R.string.notifications_new_drop_message_summary))
-                    .bigText(message)
-            )
-            .build()
-    )
+    val notificationIntent = Intent(context, MainActivity::class.java).apply {
+        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+    }
+
+    val notification = NotificationCompat.Builder(this, getString(notificationChannelId))
+        .setSmallIcon(R.drawable.ic_atomic_bell)
+        .setContentTitle(title)
+        .setPriority(NotificationCompat.PRIORITY_HIGH)
+        .setVibrate(LongArray(0))
+        .setStyle(
+            NotificationCompat.BigTextStyle()
+                .setSummaryText(getString(R.string.notifications_new_drop_message_summary))
+                .bigText(message)
+        )
+        .build()
+        .apply {
+            contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0)
+            flags = flags or Notification.FLAG_AUTO_CANCEL
+        }
+
+    NotificationManagerCompat.from(this).notify(resources.getInteger(notificationId), notification)
 }
 
 var SIMPLE_FORMAT_DATE = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
