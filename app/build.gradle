@@ -24,11 +24,11 @@ android {
             applicationIdSuffix ".debug"
             versionNameSuffix ".debug"
 
-            resValue "string", "app_name", "Atomic Assets Notifier Debug"
+            resValue "string", "app_name", "Atomic Drops Notifier Debug"
         }
 
         release {
-            resValue "string", "app_name", "Atomic Assets Notifier"
+            resValue "string", "app_name", "Atomic Drops Notifier"
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
