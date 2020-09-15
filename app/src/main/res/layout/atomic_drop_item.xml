@@ -109,7 +109,9 @@
             android:text="@{AtomicExtensions.startTimeString(atomicDropItem)}"
             app:drawableStartCompat="@drawable/ic_timer_sand_start"
             app:drawableTint="@color/blue"
-            app:layout_constraintStart_toStartOf="@id/template_image"
+            app:layout_constraintEnd_toStartOf="@+id/endtime"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/price"
             app:visible="@{atomicDropItem.startTime != 0}"
             tools:text="2020-10-10'T'20:00:00" />
@@ -124,7 +126,9 @@
             android:text="@{AtomicExtensions.endTimeString(atomicDropItem)}"
             app:drawableStartCompat="@drawable/ic_timer_sand_end"
             app:drawableTint="@color/orange"
-            app:layout_constraintEnd_toEndOf="@id/template_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/starttime"
             app:layout_constraintTop_toBottomOf="@id/price"
             app:visible="@{atomicDropItem.endTime != 0}"
             tools:text="2020-10-10'T'20:00:00" />

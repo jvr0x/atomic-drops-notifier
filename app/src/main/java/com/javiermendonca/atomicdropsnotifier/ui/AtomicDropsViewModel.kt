@@ -81,7 +81,7 @@ class AtomicDropsViewModel(
 
     companion object {
         const val WORKER_TAG = "AtomicDrops"
-        const val WORKER_FREQUENCY = 5L
+        const val WORKER_FREQUENCY = 3L
 
         const val DROPS_LIMIT = 20
     }
