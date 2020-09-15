@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <!-- These entries must match the parameters name that we set on
+         the Remote config web console, and we typically set the value
+         to the default one -->
+
+    <entry>
+        <key>developer_account</key>
+        <value>1kpaw.wam</value>
+    </entry>
+</defaultsMap>
