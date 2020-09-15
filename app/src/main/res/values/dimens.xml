@@ -7,6 +7,8 @@
     <dimen name="space_normal">16dp</dimen>
 
     <!-- Atomic Drops -->
-    <dimen name="collection_image_size">80dp</dimen>
+    <dimen name="collection_image_size">100dp</dimen>
+    <dimen name="atomic_drop_card_height">150dp</dimen>
+    <dimen name="atomic_drop_id_circle_size">56dp</dimen>
 
 </resources>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import
+            alias="AtomicExtensions"
+            type="com.javiermendonca.atomicdropsnotifier.data.repository.models.AtomicDropItemKt" />
+
+        <import
+            alias="CollectionExtensions"
+            type="com.javiermendonca.atomicdropsnotifier.data.dtos.CollectionKt" />
+
+        <variable
+            name="atomicDropItem"
+            type="com.javiermendonca.atomicdropsnotifier.data.repository.models.AtomicDropItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/atomic_drop_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:padding="@dimen/space_normal">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/template_image"
+            style="@style/Widget.App.ShapeableImageView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/atomic_drop_card_height"
+            android:adjustViewBounds="true"
+            android:background="@color/powderBlue"
+            app:collectionImage="@{atomicDropItem.template.attributes.image}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@color/powderBlue"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_medium"
+            android:text="@{CollectionExtensions.displayName(atomicDropItem.template.collection)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            app:layout_constraintBottom_toTopOf="@id/price"
+            app:layout_constraintStart_toStartOf="@id/template_image"
+            app:layout_constraintTop_toBottomOf="@id/template_image"
+            tools:text="Collection name" />
+
+        <TextView
+            android:id="@+id/drop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/drop_id_background"
+            android:paddingHorizontal="@dimen/space_medium"
+            android:text="@{Integer.toString(atomicDropItem.dropId)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+            app:layout_constraintStart_toStartOf="@+id/template_image"
+            app:layout_constraintTop_toTopOf="@+id/template_image"
+            tools:text="105" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_medium"
+            android:text="@{String.format(@string/drop_available, atomicDropItem.maxClaimable - atomicDropItem.currentClaimable, atomicDropItem.maxClaimable)}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/price"
+            app:layout_constraintEnd_toEndOf="@id/template_image"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/price"
+            tools:text="5000/5000" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_medium"
+            android:layout_marginBottom="@dimen/space_medium"
+            android:text="@{AtomicExtensions.formattedPrice(atomicDropItem, context)}"
+            app:layout_constraintStart_toStartOf="@id/template_image"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="250 WAX" />
+
+        <TextView
+            android:id="@+id/starttime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_medium"
+            android:layout_marginTop="@dimen/space_medium"
+            android:gravity="center"
+            android:text="@{AtomicExtensions.startTimeString(atomicDropItem)}"
+            app:drawableStartCompat="@drawable/ic_timer_sand_start"
+            app:drawableTint="@color/prussianBlue"
+            app:layout_constraintStart_toStartOf="@id/template_image"
+            app:layout_constraintTop_toBottomOf="@id/price"
+            app:visible="@{atomicDropItem.startTime != 0}"
+            tools:text="2020-10-10'T'20:00:00" />
+
+        <TextView
+            android:id="@+id/endtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_medium"
+            android:layout_marginEnd="@dimen/space_medium"
+            android:gravity="center"
+            android:text="@{AtomicExtensions.endTimeString(atomicDropItem)}"
+            app:drawableStartCompat="@drawable/ic_timer_sand_end"
+            app:drawableTint="@color/imperialRed"
+            app:layout_constraintEnd_toEndOf="@id/template_image"
+            app:layout_constraintTop_toBottomOf="@id/price"
+            app:visible="@{atomicDropItem.endTime != 0}"
+            tools:text="2020-10-10'T'20:00:00" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

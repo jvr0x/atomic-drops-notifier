@@ -13,3 +13,9 @@ data class Collection(
     @Json(name = "market_fee") val marketFee: Double,
     @Json(name = "img") val image: String
 ) : Dto
+
+fun Collection.displayName(): String = when {
+    name.isNotEmpty() -> name
+    collectionName.isNotEmpty() -> collectionName
+    else -> ""
+}

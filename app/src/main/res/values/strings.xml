@@ -4,10 +4,10 @@
 
     <!-- Atomic Drop -->
     <string name="drop_id">dropId: %d</string>
-    <string name="drop_price">price: %s</string>
+    <string name="drop_price">%s</string>
     <string name="drop_price_format">%1$.2f %2$s</string>
-    <string name="drop_total">total: %d</string>
-    <string name="drop_free">Free</string>
+    <string name="drop_available">%d/%d</string>
+    <string name="drop_free">Free to claim</string>
 
 
     <!-- Notifications -->

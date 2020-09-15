@@ -34,7 +34,7 @@ class AtomicDropsViewModel(
             val drops =
                 atomicDropRepository.getAtomicDrops(TableRow(limit = DROPS_LIMIT)).rows
 
-            val collectionNames = drops.distinctBy { it.collectionName }
+            val collectionNames = drops.distinctBy { it.assetsToMint.first().templateId }
                 .map { it.collectionName to it.assetsToMint.first().templateId }
 
             val templates = collectionNames

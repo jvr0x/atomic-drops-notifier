@@ -7,4 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Widget.App.ShapeableImageView" parent="Widget.MaterialComponents.ShapeableImageView">
+        <item name="shapeAppearance">?attr/shapeAppearanceSmallComponent</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.CornerSize16dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
 </resources>

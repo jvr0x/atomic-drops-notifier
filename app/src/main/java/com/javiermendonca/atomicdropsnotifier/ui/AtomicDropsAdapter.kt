@@ -31,7 +31,7 @@ class AtomicDropsAdapter : RecyclerView.Adapter<AtomicDropsAdapter.AtomicDropVie
         RecyclerView.ViewHolder(binding.root) {
         fun bind(atomicDropItem: AtomicDropItem) = with(itemView.context) {
             binding.atomicDropItem = atomicDropItem
-            binding.atomicCard.setOnClickListener {
+            binding.atomicDropContainer.setOnClickListener {
                 val browserIntent = Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse(
