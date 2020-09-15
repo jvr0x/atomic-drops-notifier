@@ -1,4 +1,9 @@
 <resources>
+
+    <string name="about">About</string>
+    <string name="about_message">%s is an Android app that lists the newest Atomic drops and notifies you of new upcoming ones.\n\nNever miss a drop again!</string>
+
+    <!-- urls -->
     <string name="atomichub_drop_link">https://wax.atomichub.io/drops/%d</string>
     <string name="ipfs_url">https://cloudflare-ipfs.com/ipfs/%s</string>
 
