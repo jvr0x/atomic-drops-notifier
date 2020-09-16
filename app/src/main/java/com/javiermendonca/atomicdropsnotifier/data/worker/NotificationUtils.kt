@@ -64,11 +64,7 @@ fun makeStatusNotification(
         .setContentTitle(title)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
         .setVibrate(LongArray(0))
-        .setStyle(
-            NotificationCompat.BigTextStyle()
-                .setSummaryText(getString(R.string.notifications_new_drop_message_summary))
-                .bigText(message)
-        )
+        .setStyle(NotificationCompat.BigTextStyle().bigText(message))
         .build()
         .apply {
             contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0)
