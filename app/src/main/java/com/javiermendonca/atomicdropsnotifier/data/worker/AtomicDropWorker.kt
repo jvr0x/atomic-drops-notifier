@@ -31,7 +31,7 @@ class AtomicDropWorker(
                     atomicDropRepository.getAtomicDrops(TableRow(limit = 1)).rows.first()
 
                 lastUnSeenDrop.let {
-                    if (lastSeenDropId != it.dropId) {
+                    if (lastSeenDropId != it.dropId && System.currentTimeMillis() < lastUnSeenDrop.endTime) {
                         val upcomingDrops = it.dropId - lastSeenDropId
                         atomicDropRepository.persistAtomicDrop(it.dropId)
                         makeStatusNotification(

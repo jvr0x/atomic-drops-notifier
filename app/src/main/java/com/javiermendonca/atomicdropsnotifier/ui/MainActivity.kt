@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                     .setTitle(getString(R.string.about))
                     .setView(aboutDialogBinding.root)
                     .setCancelable(true)
-                    .setNeutralButton(android.R.string.ok) { _, _ -> }
+                    .setPositiveButton(android.R.string.ok) { _, _ -> }
                     .show()
             }
         }
