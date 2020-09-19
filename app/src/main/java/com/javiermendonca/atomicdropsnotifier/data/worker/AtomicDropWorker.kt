@@ -31,14 +31,21 @@ class AtomicDropWorker(
                     atomicDropRepository.getAtomicDrops(TableRow(limit = 1)).rows.first()
 
                 lastUnSeenDrop.let {
-                    if (lastSeenDropId != it.dropId && System.currentTimeMillis() < lastUnSeenDrop.endTime) {
-                        val upcomingDrops = it.dropId - lastSeenDropId
-                        atomicDropRepository.persistAtomicDrop(it.dropId)
-                        makeStatusNotification(
-                            getString(R.string.notifications_new_drop_title),
-                            getString(R.string.notifications_new_drop_message, upcomingDrops),
-                            this@context
-                        )
+                    it.dropId?.run {
+                        if (lastSeenDropId != it.dropId && System.currentTimeMillis() < lastUnSeenDrop.endTime ?: 0) {
+                            val upcomingDrops = it.dropId - lastSeenDropId
+                            if (upcomingDrops > 0) {
+                                atomicDropRepository.persistAtomicDrop(it.dropId)
+                                makeStatusNotification(
+                                    getString(R.string.notifications_new_drop_title),
+                                    getString(
+                                        R.string.notifications_new_drop_message,
+                                        upcomingDrops
+                                    ),
+                                    this@context
+                                )
+                            }
+                        }
                     }
                 }
 

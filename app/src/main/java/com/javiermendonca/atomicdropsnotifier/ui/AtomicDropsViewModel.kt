@@ -25,43 +25,56 @@ class AtomicDropsViewModel(
     private val workManager = WorkManager.getInstance(application)
     val atomicDrops = MutableLiveData<List<AtomicDropItem>>()
 
+    val loading = MutableLiveData(false)
+    val error = MutableLiveData(false)
+
     init {
         queueBackgroundJob()
     }
 
     fun fetchAtomicDrops() {
         viewModelScope.launch(Dispatchers.IO) {
-            val drops =
-                atomicDropRepository.getAtomicDrops(TableRow(limit = DROPS_LIMIT)).rows
+            loading.postValue(true)
 
-            val collectionNames = drops.distinctBy { it.assetsToMint.first().templateId }
-                .map { it.collectionName to it.assetsToMint.first().templateId }
+            try {
+                val drops =
+                    atomicDropRepository.getAtomicDrops(TableRow(limit = DROPS_LIMIT)).rows
 
-            val templates = collectionNames
-                .map { async { atomicDropRepository.fetchTemplate(it.first, it.second) } }
-                .map { it.await() }
-                .map { it.template }
-                .toList()
+                val collectionNames = drops.distinctBy { it.assetsToMint?.first()?.templateId }
+                    .map { it.collectionName to it.assetsToMint?.first()?.templateId }
 
-            val atomicDropItems = drops.asSequence().map {
-                val templateId = it.assetsToMint.first().templateId
-                AtomicDropItem(
-                    dropId = it.dropId,
-                    template = templates.find { it.id.toInt() == templateId },
-                    templatesToMint = it.assetsToMint.map { it.templateId },
-                    listingPrice = it.listingPrice,
-                    authRequired = it.authRequired,
-                    accountLimit = it.accountLimit,
-                    accountLimitCooldown = it.accountLimitCooldown,
-                    maxClaimable = it.maxClaimable,
-                    currentClaimable = it.currentClaimable,
-                    startTime = it.startTime,
-                    endTime = it.endTime,
-                    description = it.displayData
-                )
-            }.toList()
+                val templates = collectionNames
+                    .map { async { atomicDropRepository.fetchTemplate(it.first, it.second) } }
+                    .map { it.await() }
+                    .filter { it.success }
+                    .map { it.template }
+                    .toList()
 
-            atomicDrops.postValue(atomicDropItems)
+                val atomicDropItems = drops.asSequence().map {
+                    val templateId = it.assetsToMint?.first()?.templateId
+                    AtomicDropItem(
+                        dropId = it.dropId ?: -1,
+                        template = templates.find { it.id?.toInt() == templateId },
+                        templatesToMint = it.assetsToMint?.map { it.templateId ?: -1 } ?: listOf(),
+                        listingPrice = it.listingPrice ?: "",
+                        authRequired = it.authRequired ?: 0,
+                        accountLimit = it.accountLimit ?: 0,
+                        accountLimitCooldown = it.accountLimitCooldown ?: 0,
+                        maxClaimable = it.maxClaimable ?: 0,
+                        currentClaimable = it.currentClaimable ?: 0,
+                        startTime = it.startTime ?: 0,
+                        endTime = it.endTime ?: 0,
+                        description = it.displayData ?: ""
+                    )
+                }.toList()
+
+                error.postValue(false)
+                atomicDrops.postValue(atomicDropItems)
+            } catch (e: Exception) {
+                error.postValue(true)
+            }
+
+            loading.postValue(false)
         }
     }
 

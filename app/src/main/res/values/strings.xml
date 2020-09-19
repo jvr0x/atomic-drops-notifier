@@ -41,5 +41,6 @@
 
     <!-- Errors -->
     <string name="error_fetching_drops">Error fetching the drops</string>
+    <string name="error_fetching_retry">Retry</string>
 
 </resources>

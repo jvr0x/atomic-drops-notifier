@@ -6,16 +6,16 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Collection(
     val contract: String?,
-    @Json(name = "collection_name") val collectionName: String,
-    val name: String,
-    val author: String,
-    @Json(name = "authorized_accounts") val authorizedAccounts: List<String>,
-    @Json(name = "market_fee") val marketFee: Double,
-    @Json(name = "img") val image: String
+    @Json(name = "collection_name") val collectionName: String?,
+    val name: String?,
+    val author: String?,
+    @Json(name = "authorized_accounts") val authorizedAccounts: List<String>?,
+    @Json(name = "market_fee") val marketFee: Double?,
+    @Json(name = "img") val image: String?
 ) : Dto
 
 fun Collection.displayName(): String = when {
-    name.isNotEmpty() -> name
-    collectionName.isNotEmpty() -> collectionName
+    name?.isNotEmpty() == true -> name
+    collectionName?.isNotEmpty() == true -> collectionName
     else -> ""
 }
