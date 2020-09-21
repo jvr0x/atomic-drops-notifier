@@ -68,6 +68,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/developer" />
+        <TextView
+            android:id="@+id/developer_telegram"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/space_medium"
+            android:text="@string/about_telegram"
+            app:drawableStartCompat="@drawable/ic_telegram"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/developer_twitter" />
 
         <TextView
             android:id="@+id/app_github"
@@ -78,7 +88,7 @@
             app:drawableStartCompat="@drawable/ic_github"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/developer_twitter" />
+            app:layout_constraintTop_toBottomOf="@+id/developer_telegram" />
 
         <TextView
             android:layout_width="0dp"

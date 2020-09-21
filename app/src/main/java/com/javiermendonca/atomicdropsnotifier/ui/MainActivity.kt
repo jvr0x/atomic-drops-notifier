@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                     donationAccount = remoteConfig.getString(getString(R.string.developer_account))
                     appVersion = BuildConfig.VERSION_NAME
                     developerTwitter.setOnClickListener { openUrl(getString(R.string.about_twitter_link)) }
+                    developerTelegram.setOnClickListener { openUrl(getString(R.string.about_telegram_link)) }
                     appGithub.setOnClickListener { openUrl(getString(R.string.about_github_link)) }
                 }
 
