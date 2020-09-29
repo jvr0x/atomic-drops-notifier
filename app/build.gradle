@@ -13,7 +13,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 4
-        versionName "1.0.2"
+        versionName "1.0.3"
 
         buildConfigField "String", "WAX_BASE_URL", "\"https://api.waxsweden.org\""
         buildConfigField "String", "ATOMIC_BASE_URL", "\"https://wax.api.atomicassets.io\""

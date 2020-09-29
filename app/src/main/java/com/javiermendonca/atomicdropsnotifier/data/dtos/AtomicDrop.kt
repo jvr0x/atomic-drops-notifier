@@ -14,7 +14,7 @@ data class AtomicDrop(
     @Json(name = "account_limit_cooldown") val accountLimitCooldown: Int?,
     @Json(name = "max_claimable") val maxClaimable: Int?,
     @Json(name = "current_claimed") val currentClaimable: Int?,
-    @Json(name = "start_time") val startTime: Long?,
-    @Json(name = "end_time") val endTime: Long?,
+    @Json(name = "start_time") val startTime: Long = 0,
+    @Json(name = "end_time") val endTime: Long = 0,
     @Json(name = "display_data") val displayData: String?
 ) : Dto

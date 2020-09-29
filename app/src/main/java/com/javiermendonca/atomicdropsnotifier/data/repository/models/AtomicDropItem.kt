@@ -2,6 +2,7 @@ package com.javiermendonca.atomicdropsnotifier.data.repository.models
 
 import android.content.Context
 import com.javiermendonca.atomicdropsnotifier.R
+import com.javiermendonca.atomicdropsnotifier.core.extensions.ended
 import com.javiermendonca.atomicdropsnotifier.data.dtos.Template
 import com.javiermendonca.atomicdropsnotifier.data.worker.SIMPLE_FORMAT_DATE
 
@@ -34,10 +35,6 @@ fun AtomicDropItem.formattedPrice(context: Context): String = with(context) {
     }
 }
 
-fun AtomicDropItem.outOfStock(): Boolean = maxClaimable - currentClaimable == 0
+fun AtomicDropItem.outOfStock(): Boolean = maxClaimable != 0 && maxClaimable - currentClaimable == 0
 
-fun AtomicDropItem.ended(): Boolean = if (endTime != 0L) {
-    System.currentTimeMillis() / 1000 > endTime
-} else {
-    false
-}
+fun AtomicDropItem.ended(): Boolean = endTime.ended()

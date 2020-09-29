@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.javiermendonca.atomicdropsnotifier.R
+import com.javiermendonca.atomicdropsnotifier.core.extensions.ended
 import com.javiermendonca.atomicdropsnotifier.data.dtos.TableRow
 import com.javiermendonca.atomicdropsnotifier.data.repository.AtomicDropRepository
 import kotlinx.coroutines.coroutineScope
@@ -27,15 +28,15 @@ class AtomicDropWorker(
                 )
 
                 val lastSeenDropId = atomicDropRepository.lastPersistedDrop()
-                val lastUnSeenDrop =
+                val lastDrop =
                     atomicDropRepository.getAtomicDrops(TableRow(limit = 1)).rows.first()
 
-                lastUnSeenDrop.let {
-                    it.dropId?.run {
-                        if (lastSeenDropId != it.dropId && System.currentTimeMillis() < lastUnSeenDrop.endTime ?: 0) {
-                            val upcomingDrops = it.dropId - lastSeenDropId
+                lastDrop.dropId?.let {
+                    atomicDropRepository.persistAtomicDrop(it)
+                    if (lastSeenDropId < it) {
+                        if (lastDrop.endTime == 0L || !lastDrop.endTime.ended()) {
+                            val upcomingDrops = it - lastSeenDropId
                             if (upcomingDrops > 0) {
-                                atomicDropRepository.persistAtomicDrop(it.dropId)
                                 makeStatusNotification(
                                     getString(R.string.notifications_new_drop_title),
                                     getString(
