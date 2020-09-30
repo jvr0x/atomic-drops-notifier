@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_medium"
-            android:text="@{String.format(@string/drop_available, atomicDropItem.maxClaimable - atomicDropItem.currentClaimable, atomicDropItem.maxClaimable)}"
+            android:text="@{AtomicExtensions.unlimitedSupply(atomicDropItem) ? @string/drop_supply_unlimited : String.format(@string/drop_available, atomicDropItem.maxClaimable - atomicDropItem.currentClaimable, atomicDropItem.maxClaimable)}"
             app:layout_constraintBaseline_toBaselineOf="@+id/price"
             app:layout_constraintEnd_toEndOf="@id/template_image"
             app:layout_constraintHorizontal_bias="1.0"

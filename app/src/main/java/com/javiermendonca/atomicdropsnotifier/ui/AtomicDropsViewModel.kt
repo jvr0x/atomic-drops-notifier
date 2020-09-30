@@ -62,8 +62,8 @@ class AtomicDropsViewModel(
                         accountLimitCooldown = it.accountLimitCooldown ?: 0,
                         maxClaimable = it.maxClaimable ?: 0,
                         currentClaimable = it.currentClaimable ?: 0,
-                        startTime = it.startTime ?: 0,
-                        endTime = it.endTime ?: 0,
+                        startTime = it.startTime,
+                        endTime = it.endTime,
                         description = it.displayData ?: ""
                     )
                 }.toList()
@@ -96,7 +96,7 @@ class AtomicDropsViewModel(
         const val WORKER_TAG = "AtomicDrops"
         const val WORKER_FREQUENCY = 3L
 
-        const val DROPS_LIMIT = 20
+        const val DROPS_LIMIT = 40
     }
 }
 

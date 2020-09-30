@@ -38,3 +38,6 @@ fun AtomicDropItem.formattedPrice(context: Context): String = with(context) {
 fun AtomicDropItem.outOfStock(): Boolean = maxClaimable != 0 && maxClaimable - currentClaimable == 0
 
 fun AtomicDropItem.ended(): Boolean = endTime.ended()
+
+fun AtomicDropItem.unlimitedSupply(): Boolean = maxClaimable == 0
+
