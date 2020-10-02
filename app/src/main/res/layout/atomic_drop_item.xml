@@ -40,15 +40,30 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_medium"
             android:text="@{CollectionExtensions.displayName(atomicDropItem.template.collection)}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             app:layout_constraintBottom_toTopOf="@id/price"
+            app:layout_constraintEnd_toStartOf="@+id/maxPerAccount"
             app:layout_constraintStart_toStartOf="@id/template_image"
             app:layout_constraintTop_toBottomOf="@id/template_image"
             tools:text="Collection name" />
+
+        <TextView
+            android:id="@+id/maxPerAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_medium"
+            android:text="@{String.format(@string/drop_max_per_account, atomicDropItem.accountLimit)}"
+            app:layout_constraintBottom_toTopOf="@+id/total"
+            app:layout_constraintEnd_toEndOf="@id/template_image"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/title"
+            app:visible="@{AtomicExtensions.hasClaimLimit(atomicDropItem)}"
+            tools:text="5 per account" />
+
 
         <TextView
             android:id="@+id/drop"
@@ -95,18 +110,20 @@
             android:layout_marginStart="@dimen/space_medium"
             android:layout_marginBottom="@dimen/space_medium"
             android:text="@{AtomicExtensions.formattedPrice(atomicDropItem, context)}"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/template_image"
             app:layout_constraintTop_toBottomOf="@id/title"
             tools:text="250 WAX" />
 
         <TextView
             android:id="@+id/starttime"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_medium"
             android:layout_marginTop="@dimen/space_medium"
             android:gravity="center_vertical"
             android:text="@{AtomicExtensions.startTimeString(atomicDropItem)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             app:drawableStartCompat="@drawable/ic_timer_sand_start"
             app:drawableTint="@color/blue"
             app:layout_constraintEnd_toStartOf="@+id/endtime"
@@ -118,12 +135,13 @@
 
         <TextView
             android:id="@+id/endtime"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_medium"
             android:layout_marginEnd="@dimen/space_medium"
             android:gravity="center_vertical"
             android:text="@{AtomicExtensions.endTimeString(atomicDropItem)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             app:drawableStartCompat="@drawable/ic_timer_sand_end"
             app:drawableTint="@color/orange"
             app:layout_constraintEnd_toEndOf="parent"

@@ -41,3 +41,5 @@ fun AtomicDropItem.ended(): Boolean = endTime.ended()
 
 fun AtomicDropItem.unlimitedSupply(): Boolean = maxClaimable == 0
 
+fun AtomicDropItem.hasClaimLimit(): Boolean = accountLimit != 0
+

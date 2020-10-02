@@ -25,6 +25,7 @@
     <string name="drop_free">Free to claim</string>
     <string name="ended">Ended!</string>
     <string name="out_of_stock">Out of stock</string>
+    <string name="drop_max_per_account">%d per account</string>
 
 
     <!-- Notifications -->
