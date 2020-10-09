@@ -26,6 +26,7 @@
     <string name="ended">Ended!</string>
     <string name="out_of_stock">Out of stock</string>
     <string name="drop_max_per_account">%d per account</string>
+    <string name="drop_requires_whitelist">Requires whitelisting</string>
 
 
     <!-- Notifications -->

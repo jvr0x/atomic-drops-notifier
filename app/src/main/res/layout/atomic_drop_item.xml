@@ -92,6 +92,20 @@
             tools:text="Ended!" />
 
         <TextView
+            android:id="@+id/whitelist_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_medium"
+            android:background="@drawable/drop_requires_whitelist_background"
+            android:paddingHorizontal="@dimen/space_medium"
+            android:text="@string/drop_requires_whitelist"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/template_image"
+            app:layout_constraintEnd_toEndOf="@+id/template_image"
+            app:visible="@{AtomicExtensions.requiresWhiteList(atomicDropItem)}" />
+
+        <TextView
             android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
