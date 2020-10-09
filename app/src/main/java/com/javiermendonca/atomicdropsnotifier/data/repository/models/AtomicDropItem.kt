@@ -35,7 +35,7 @@ fun AtomicDropItem.formattedPrice(context: Context): String = with(context) {
     }
 }
 
-fun AtomicDropItem.requiresWhiteList(): Boolean = authRequired != 0
+fun AtomicDropItem.requiresWhiteListing(): Boolean = authRequired != 0
 
 fun AtomicDropItem.outOfStock(): Boolean = maxClaimable != 0 && maxClaimable - currentClaimable == 0
 

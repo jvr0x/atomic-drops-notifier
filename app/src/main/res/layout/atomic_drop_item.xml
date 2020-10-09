@@ -103,7 +103,7 @@
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="@+id/template_image"
             app:layout_constraintEnd_toEndOf="@+id/template_image"
-            app:visible="@{AtomicExtensions.requiresWhiteList(atomicDropItem)}" />
+            app:visible="@{AtomicExtensions.requiresWhiteListing(atomicDropItem)}" />
 
         <TextView
             android:id="@+id/total"
