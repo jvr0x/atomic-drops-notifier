@@ -25,6 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:visible="@{!viewModel.loading &amp;&amp; !viewModel.error}"
+            app:loadMoreItems="@{viewModel::loadMore}"
             tools:itemCount="10"
             tools:listitem="@layout/atomic_drop_item" />
 
