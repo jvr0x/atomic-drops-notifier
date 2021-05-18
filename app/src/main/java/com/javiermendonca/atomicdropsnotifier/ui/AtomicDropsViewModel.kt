@@ -96,7 +96,7 @@ class AtomicDropsViewModel(
         const val WORKER_TAG = "AtomicDrops"
         const val WORKER_FREQUENCY = 3L
 
-        const val DROPS_LIMIT = 40
+        const val DROPS_LIMIT = 15
     }
 }
 
